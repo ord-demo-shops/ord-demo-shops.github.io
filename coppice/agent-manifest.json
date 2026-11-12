@@ -1,0 +1,115 @@
+{
+  "brand": "Coppice Cycles",
+  "networks": [
+    {
+      "name": "coppice_assistant",
+      "front_man": "shop_assistant",
+      "hocon": "./coppice_assistant.network.json",
+      "description": "Help with Coppice Cycles's products, orders and returns. Fictional demo shop.",
+      "tags": [
+        "agentified-website",
+        "fictional-demo",
+        "ord/1"
+      ],
+      "sample_queries": [
+        "Which parts are made to order?",
+        "I want to return the wheelset from order CC-5531, email jonah.reyes@example.com. I changed my mind; it is unused.",
+        "I disagree. Can a neutral party look at this?",
+        "Can you book a fitting appointment?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.openai.com/v1",
+    "mock": false,
+    "byok_router": "https://api.openai.com/v1"
+  },
+  "allowed_peers": [
+    "https://taronsung.github.io"
+  ],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "The assistant may load the Open Resolution Desk's public procedure guide. The visitor approves each contact."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "coppice_assistant",
+    "front_man": "shop_assistant",
+    "available": false,
+    "reason": "This is a static site; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#23353D"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "coppice_assistant",
+        "front_man": "shop_assistant",
+        "aliases": [
+          "coppice_assistant",
+          "shop_assistant"
+        ],
+        "url": "coppice_assistant"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "agentTools": [
+      "get_shop_info",
+      "look_up_order",
+      "start_return",
+      "prepare_desk_handoff"
+    ]
+  },
+  "resolution": {
+    "protocol": "ord/1",
+    "desk": "https://taronsung.github.io/open-resolution-desk",
+    "engine": {
+      "name": "ord-evaluate",
+      "version": "1.0.0",
+      "sha256": "sha256:279e235cda3341bae997df9820fac0f71530d63bd903303c7edf700174541791"
+    },
+    "terms": {
+      "current": "1",
+      "versions": {
+        "1": {
+          "url": "./terms/v1.json",
+          "sha256": "sha256:69f6f7a83da034d7fa348c848c216b901399c8636f6cf4c0548ba600857b3e2e",
+          "effective_from": "2026-01-15",
+          "effective_until": null
+        }
+      }
+    },
+    "offers": [
+      {
+        "id": "workshop-credit-40",
+        "kind": "store_credit_fixed",
+        "label": "Workshop credit of $40",
+        "value_cents": 4000,
+        "applies_to": [
+          "not_eligible"
+        ],
+        "detail": "A goodwill credit toward a service or parts, valid for 12 months. Offered when a return is not eligible."
+      }
+    ],
+    "representative": "https://ord-demo-shops.github.io/coppice/agents/coppice_claims",
+    "case_page": "./backoffice.html"
+  }
+}

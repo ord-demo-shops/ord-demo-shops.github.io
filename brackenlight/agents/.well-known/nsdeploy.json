@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "brackenlight_claims",
+      "front_man": "shop_representative",
+      "aliases": [
+        "brackenlight_claims",
+        "shop_representative"
+      ],
+      "url": "brackenlight_claims"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

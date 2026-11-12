@@ -1,0 +1,7 @@
+{
+  "protocol": "nsdeploy-agent-mcp/v1",
+  "network": "coppice_claims",
+  "front_man": "shop_representative",
+  "available": false,
+  "reason": "This is a static site; a public MCP facade requires an application host."
+}

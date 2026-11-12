@@ -1,0 +1,64 @@
+{
+  "brand": "Coppice Cycles (case representative)",
+  "networks": [
+    {
+      "name": "coppice_claims",
+      "front_man": "shop_representative",
+      "hocon": "./coppice_claims.network.json",
+      "description": "Speaks for Coppice Cycles in Open Resolution Desk cases, within a published mandate. Other agentic websites call it by URL.",
+      "tags": [
+        "ord/1",
+        "public-network",
+        "fictional-demo"
+      ],
+      "sample_queries": [
+        "Case ORD-0000: order, item, change_of_mind, decision eligible, refund value $79.00. Anything to add?",
+        "What happens after the customer chooses?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.openai.com/v1",
+    "mock": false,
+    "byok_router": "https://api.openai.com/v1"
+  },
+  "allowed_peers": [],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "This network calls no other site."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "coppice_claims",
+    "front_man": "shop_representative",
+    "available": false,
+    "reason": "This is a static site; a public MCP facade requires an application host."
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "coppice_claims",
+        "front_man": "shop_representative",
+        "aliases": [
+          "coppice_claims",
+          "shop_representative"
+        ],
+        "url": "coppice_claims"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": false,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  }
+}

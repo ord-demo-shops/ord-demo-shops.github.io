@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "brackenlight_assistant",
+      "front_man": "shop_assistant",
+      "aliases": [
+        "brackenlight_assistant",
+        "shop_assistant"
+      ],
+      "url": "brackenlight_assistant"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

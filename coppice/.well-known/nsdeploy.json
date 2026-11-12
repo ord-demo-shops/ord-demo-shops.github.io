@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "coppice_assistant",
+      "front_man": "shop_assistant",
+      "aliases": [
+        "coppice_assistant",
+        "shop_assistant"
+      ],
+      "url": "coppice_assistant"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

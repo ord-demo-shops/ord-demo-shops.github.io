@@ -1,0 +1,18 @@
+{
+  "protocol": "nsdeploy-link/v1",
+  "exports": [
+    {
+      "network": "coppice_claims",
+      "front_man": "shop_representative",
+      "aliases": [
+        "coppice_claims",
+        "shop_representative"
+      ],
+      "url": "coppice_claims"
+    }
+  ],
+  "imports": [],
+  "link_updates": {
+    "mode": "browser-local"
+  }
+}

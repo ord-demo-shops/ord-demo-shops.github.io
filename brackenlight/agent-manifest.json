@@ -1,0 +1,124 @@
+{
+  "brand": "Brackenlight Home",
+  "networks": [
+    {
+      "name": "brackenlight_assistant",
+      "front_man": "shop_assistant",
+      "hocon": "./brackenlight_assistant.network.json",
+      "description": "Help with Brackenlight Home's products, orders and returns. Fictional demo shop.",
+      "tags": [
+        "agentified-website",
+        "fictional-demo",
+        "ord/1"
+      ],
+      "sample_queries": [
+        "What lamps do you sell, and what do they cost?",
+        "Can I return the lamp from order BL-2207? My email is mina.park@example.com. I changed my mind; it is unused and still boxed.",
+        "I disagree with that decision. What can I do?",
+        "Can you give me a discount code?"
+      ]
+    }
+  ],
+  "llm_router": {
+    "base_url": "https://api.openai.com/v1",
+    "mock": false,
+    "byok_router": "https://api.openai.com/v1"
+  },
+  "allowed_peers": [
+    "https://taronsung.github.io"
+  ],
+  "peer_policy": {
+    "mode": "closed",
+    "deny_origins": [],
+    "note": "The assistant may load the Open Resolution Desk's public procedure guide. The visitor approves each contact."
+  },
+  "agent_mcp": {
+    "protocol": "nsdeploy-agent-mcp/v1",
+    "network": "brackenlight_assistant",
+    "front_man": "shop_assistant",
+    "available": false,
+    "reason": "This is a static site; a public MCP facade requires an application host."
+  },
+  "theme": {
+    "primary": "#1E2A47"
+  },
+  "linking": {
+    "protocol": "nsdeploy-link/v1",
+    "exports": [
+      {
+        "network": "brackenlight_assistant",
+        "front_man": "shop_assistant",
+        "aliases": [
+          "brackenlight_assistant",
+          "shop_assistant"
+        ],
+        "url": "brackenlight_assistant"
+      }
+    ],
+    "imports": [],
+    "link_updates": {
+      "mode": "browser-local"
+    }
+  },
+  "deployment": {
+    "mode": "static",
+    "self_contained_runtime": true,
+    "browser_mock": false,
+    "direct_byok": true,
+    "direct_mcp_requires_cors": true,
+    "public_mcp_facade": false
+  },
+  "actions": {
+    "version": 1,
+    "module": "./site-actions.js",
+    "agentTools": [
+      "get_shop_info",
+      "look_up_order",
+      "start_return",
+      "prepare_desk_handoff"
+    ]
+  },
+  "resolution": {
+    "protocol": "ord/1",
+    "desk": "https://taronsung.github.io/open-resolution-desk",
+    "engine": {
+      "name": "ord-evaluate",
+      "version": "1.0.0",
+      "sha256": "sha256:279e235cda3341bae997df9820fac0f71530d63bd903303c7edf700174541791"
+    },
+    "terms": {
+      "current": "3",
+      "versions": {
+        "2": {
+          "url": "./terms/v2.json",
+          "sha256": "sha256:9653fd7a3af2587f86b3c803a5535a18e31a8038778ca083b6409e14c6c16a58",
+          "effective_from": "2026-03-01",
+          "effective_until": "2026-10-14"
+        },
+        "3": {
+          "url": "./terms/v3.json",
+          "sha256": "sha256:a1f35297c1f34f4fb279731386230ba62395a727f33a6c35344fbe4ff1f2d9e9",
+          "effective_from": "2026-10-15",
+          "effective_until": null
+        }
+      }
+    },
+    "offers": [
+      {
+        "id": "credit-115",
+        "kind": "store_credit",
+        "label": "Store credit worth 115% of the refund",
+        "percent_of_refund": 115,
+        "applies_to": [
+          "eligible"
+        ],
+        "claim_types": [
+          "change_of_mind"
+        ],
+        "detail": "Keep shopping with us instead of a refund. Valid for 12 months."
+      }
+    ],
+    "representative": "https://ord-demo-shops.github.io/brackenlight/agents/brackenlight_claims",
+    "case_page": "./backoffice.html"
+  }
+}
