@@ -92,9 +92,9 @@ export const SHOP = {
         "name": "Mina Park",
         "email": "mina.park@example.com"
       },
-      "placed_on": "2026-09-21",
-      "dispatched_on": "2026-09-22",
-      "delivered_on": "2026-09-25",
+      "placed_on": "2026-10-08",
+      "dispatched_on": "2026-10-09",
+      "delivered_on": "2026-10-12",
       "items": [
         {
           "sku": "lamp-ash-glaze",
